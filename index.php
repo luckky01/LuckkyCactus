@@ -27,8 +27,8 @@ route('/', function(){
     } else {        
         $role = $_SESSION['role'];
         $ViewMap = [
-            'admin' => 'app/user/index.php',
-            'user'  => 'app/admin/index.php',
+            'ADMIN' => 'app/admin/index.php',
+            'USER'  => 'app/user/index.php',
         ];
         include $ViewMap[$role];
         $interface->ConA('ออกจากระบบ', 'กดยืนยันเพื่อออกจากระบบ 🎯', 'danger', 'logout');

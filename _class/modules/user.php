@@ -14,13 +14,14 @@ class Users {
     }
 
     //use username for project
-    public function register($email, $password, $role, $fname, $lname, $address, $phone) {
+
+    public function register($email, $password, $fname, $lname, $address, $phone) {
         if ($this->exists($email)) {
             $_SESSION['error'] = "มีผู้ใช้นี้อยู่แล้ว";
         }
         
-        $stmt = $this->pdo->prepare("INSERT INTO $this->table_name (email, password, role, fname, lname, address, phone) VALUES (?,?,?,?,?,?,?)");
-        $stmt->execute([$email, $password, $role, $fname, $lname, $address, $phone]);
+        $stmt = $this->pdo->prepare("INSERT INTO $this->table_name (email, password, fname, lname, address, phone) VALUES (?,?,?,?,?,?)");
+        $stmt->execute([$email, $password, $fname, $lname, $address, $phone]);
 
         try {
             $_SESSION['success'] = "สมัครสมาชิก $email สำเร็จ";
@@ -35,7 +36,7 @@ class Users {
         if ($data = $this->exists($email)) {
             $hashedPassword = $data['password'];
             if ($password == $hashedPassword) {
-                if ($data['status'] != 0) {
+                if ($data['approve'] != 'false') {
                     $_SESSION['user_login'] = $data['id'];
                     $_SESSION['role'] = $data['role'];
                 } else {
@@ -63,15 +64,7 @@ class Users {
             $stmt = $this->pdo->prepare("SELECT * FROM users WHERE id = ?");
             $stmt->execute([$_SESSION['user_login']]);
             $user = $stmt->fetch();
-            if ($user) {
-                $stmt = $this->pdo->prepare("SELECT * FROM shop WHERE user_id = ?");
-                $stmt->execute([$user['id']]);
-                $shop = $stmt->fetch();
-                if ($shop) {
-                    return ['user' => $user, 'shop' => $shop]; 
-                }
-                return ['user' => $user, 'shop' => false];
-            }
+            return ['user' => $user, 'shop' => false];
         }
     }    
 

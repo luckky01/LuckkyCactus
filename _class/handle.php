@@ -1,9 +1,10 @@
 <?php 
 session_start();
-// header("location: /"); // 🔥 can comment for debug mode 55555555
+header("location: /"); // 🔥 can comment for debug mode 55555555
 require_once '../_constructs/db.php';
 require_once 'modules/data.php';
 require_once 'modules/user.php';
+
 $db = new Database();
 $pdo = $db->getConnect();
 $user = new Users($pdo);
@@ -87,8 +88,8 @@ if (isset($_POST['update_profile'])) {
 
     if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
         $new = time() .'_'. $_FILES['image']['name'];
-        $dir = './uploads/' . $new;
-        $image = '/class/uploads/'. $new;
+        $dir = '../public/users/' . $new;
+        $image = './public/users/'. $new;
         move_uploaded_file($_FILES['image']['tmp_name'], $dir);
     }
 
@@ -156,21 +157,21 @@ if (isset($_POST['add_food'])) {
 }
 
 if (isset($_POST['add_cart'])) {
-    $id = $_POST['food'];
+    $id = $_POST['product'];
     $qty = $_POST['qty'];
     $oncart = $dataHandler->get1("SELECT * FROM cart WHERE user_id = $userId");
-    $food = $dataHandler->get1("SELECT * FROM food WHERE id = $id");
-    $name = $food['name'];
+    $product = $dataHandler->get1("SELECT * FROM product WHERE id = $id");
+    $name = $product['name'];
 
     var_dump($oncart);
     if ($oncart) {
-        if ($id == $oncart['food_id']) {
-            $dataHandler->update('cart', 'qty = ?', 'food_id = ?', [$oncart['qty'] + $qty, $id]);
+        if ($id == $oncart['product_id']) {
+            $dataHandler->update('cart', 'qty = ?', 'product_id = ?', [$oncart['qty'] + $qty, $id]);
         } else {
-            $dataHandler->add('cart', 'name, price, discount, qty, shop_id, food_id, user_id', '?,?,?,?,?,?,?', [$food['name'], $food['price'], $food['discount'], $qty, $food['shop_id'],$food['id'], $userId ]);
+            $dataHandler->add('cart', 'name, price, qty, food_id, user_id', '?,?,?,?,?,?,?', [$product['name'], $product['price'], $qty, $product['shop_id'],$product['id'], $userId ]);
         }
     } else {
-        $dataHandler->add('cart', 'name, price, discount, qty, shop_id, food_id, user_id', '?,?,?,?,?,?,?', [$food['name'], $food['price'], $food['discount'], $qty, $food['shop_id'],$food['id'], $userId ]);
+        $dataHandler->add('cart', 'name, price, qty, product_id, user_id', '?,?,?,?,?', [$product['name'], $product['price'], $qty, $product['id'], $userId ]);
     }
     
     if ($dataHandler) { 

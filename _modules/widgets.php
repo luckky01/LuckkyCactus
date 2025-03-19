@@ -38,7 +38,7 @@
             </div>
 
             <div class="modal-body p-5 pt-0">
-                <form action="class/handle.php" method="post">
+                <form action="_class/handle.php" method="post">
                     <div class="form-floating mb-3">
                         <input type="text" name="email" placeholder="s" class="form-control" required>
                         <label>Email</label>
@@ -47,25 +47,17 @@
                         <input type="password" name="password" placeholder="s" class="form-control" required>
                         <label>Password</label>
                     </div>
-                    <div class="form-floating mb-3">
-                        <select name="role" class="form-control" required>
-                            <option value="user">User</option>
-                            <option value="manager">Manager</option>
-                            <option value="delivery">Delivery</option>
-                        </select>
-                        <label>Role</label>
-                    </div>
                     <div class="row">
                         <div class="col">
                             <div class="form-floating mb-3">
                                 <input type="text" name="fname" placeholder="s" class="form-control" required>
-                                <label>fname</label>
+                                <label>ชื่อ</label>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-floating mb-3">
                                 <input type="text" name="lname" placeholder="s" class="form-control" required>
-                                <label>lname</label>
+                                <label>นามสกุล</label>
                             </div>
                         </div>
                     </div>
