@@ -25,14 +25,13 @@ $deleteParams = [
 
 if (isset($_POST['signup'])) {
     $email = $_POST['email'];
-    $username = $_POST['username'];
     $password = $_POST['password'];
     $role = $_POST['role'];
     $fname = $_POST['fname'];
     $lname = $_POST['lname'];
     $address = $_POST['address'];
     $phone = $_POST['phone'];
-    $user->register($email, $password, $role, $fname, $lname, $address, $phone);
+    $user->register($email, $password, $fname, $lname, $address, $phone);
 }
 
 if (isset($_POST['signin'])) {

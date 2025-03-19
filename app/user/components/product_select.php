@@ -22,16 +22,6 @@
                             <!-- Price -->
                             <h4 class="fw-bold text-success mb-4">฿<?= number_format($data['price'], 2) ?></h4>
 
-                            <!-- Color Picker or Options (if any) -->
-                            <div class="mb-3">
-                                <strong>Select Color:</strong>
-                                <select class="form-select">
-                                    <option value="red">Red</option>
-                                    <option value="blue">Blue</option>
-                                    <option value="green">Green</option>
-                                </select>
-                            </div>
-
                             <!-- Quantity -->
                             <div class="mb-3">
                                 <strong>Quantity:</strong>
