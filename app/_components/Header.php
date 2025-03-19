@@ -11,7 +11,11 @@
             <ul class="ms-auto navbar-nav">
                 <?php if (isset($useAuth['user'])) { ?>
                     <li class="nav-item">
-                        <a href="#" class="nav-link nav-content" data-content="content_cart"><i class="far fa-shopping-cart"></i></a>
+                        <?php if ($useAuth['user']['role'] == 'USER' ) { ?>
+                        <a href="#" class="nav-link nav-content" data-content="content_cart">
+                            <i class="far fa-shopping-cart"></i>
+                        </a>
+                        <?php } ?>
                     </li>
                     <li class="dropdown nav-item">
                         <a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">

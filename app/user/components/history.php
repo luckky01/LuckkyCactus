@@ -11,7 +11,6 @@
                         <th>เวลา</th>
                         <th>ผู้ส่ง</th>
                         <th>สถานะการส่ง</th>
-                        <th>ร้าน</th>
                         <th>รายละเอียด</th>
                     </tr>
                 </thead>
@@ -22,10 +21,11 @@
                             <td><?= $data['time'] ?></td>
                             <th><?= $data['delivery_name'] ? $data['delivery_name'] : 'ยังไม่มีผู้ส่ง' ?></th>
                             <td><?= $data['delivery_status'] == 0 ? '🚚 กำลังจัดส่ง' : '✅ จัดส่งแล้ว'; ?></td>
-
-                            <td><?= $data['shop_name'] ?></td>
-                            <td><button class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                                    data-bs-target="#order-<?= $data['id'] ?>">ดูรายละเอียด</button></td>
+                            <td>
+                                <button class="btn btn-primary btn-sm" data-bs-toggle="modal"data-bs-target="#order-<?= $data['id'] ?>">
+                                    ดูรายละเอียด
+                                </button>
+                            </td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
