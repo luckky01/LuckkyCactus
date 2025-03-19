@@ -25,7 +25,7 @@ class UIInterface {
                         <p>$message</p>
                     </div>
                     <div class='modal-footer flex-column align-items-stretch w-100 gap-2 pb-3 border-top-0'>
-                        <a href='class/handle.php?$req' class='btn btn-lg btn-$type'>ยืนยัน</a>
+                        <a href='_class/handle.php?$req' class='btn btn-lg btn-$type'>ยืนยัน</a>
                     </div>
                 </div>
             </div>

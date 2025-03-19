@@ -4,7 +4,7 @@
 class Database {
     private $host = "localhost";
     private $user = "root";
-    private $pass = "";
+    private $pass = "ntdotjsx";
     private $dbname = "new_secreat";
     public $pdo;
 
